@@ -1,57 +1,50 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Flex, Divider, Row, Button } from "antd";
 
 export default function Home() {
   return (
-    <div>
-      <h2>Home</h2>
-      <div>
-        <Link to="/render-props">
-          <button
-            style={{
-              margin: "10px",
-              padding: "10px 20px",
-              backgroundColor: "#4CAF50",
-              color: "white",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-            }}
-          >
-            Render Props
-          </button>
-        </Link>
-        <Link to="/hoc">
-          <button
-            style={{
-              margin: "10px",
-              padding: "10px 20px",
-              backgroundColor: "#008CBA",
-              color: "white",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-            }}
-          >
-            Higher Order Components (HOC)
-          </button>
-        </Link>
-        <Link to="/compound-component">
-          <button
-            style={{
-              margin: "10px",
-              padding: "10px 20px",
-              backgroundColor: "#f44336",
-              color: "white",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-            }}
-          >
-            Compound Component
-          </button>
-        </Link>
-      </div>
-    </div>
+    <Flex align="center" justify="center" style={{ height: "100vh" }} vertical>
+      <Divider>
+        <h2>HOME</h2>
+      </Divider>
+      <Row>
+        <div style={{ display: "flex", gap: "10px" }}>
+          <Link to="/render-props">
+            <Button
+              style={{
+                background: "linear-gradient(45deg, #f3ec78, #af4261)",
+                borderRadius: "5px",
+                color: "#fff",
+              }}
+            >
+              <strong>Render Props</strong>
+            </Button>
+          </Link>
+          <Link to="/hoc">
+            <Button
+              style={{
+                background: "linear-gradient(45deg, #4facfe, #00f2fe)",
+                borderRadius: "5px",
+                color: "#fff",
+              }}
+            >
+              <strong>Higher Order Component (HOC)</strong>
+            </Button>
+          </Link>
+          <Link to="/compound-component">
+            <Button
+              style={{
+                background: "linear-gradient(45deg, #ff9a9e, #fad0c4)",
+                borderRadius: "5px",
+                color: "#fff",
+              }}
+            >
+              <strong>Compound Component</strong>
+            </Button>
+          </Link>
+        </div>
+      </Row>
+    </Flex>
   );
 }

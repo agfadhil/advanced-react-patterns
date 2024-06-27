@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+div#root {
+  padding: 0 2rem 2rem 2rem;
+}
+
+.ant-btn {
+  transition: opacity 0.5s ease;
+}
+
+.ant-btn:hover {
+  opacity: 0.8;
+}
