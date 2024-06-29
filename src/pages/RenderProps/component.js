@@ -6,7 +6,17 @@ import {
   EllipsisOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import { Avatar, Card, Flex, Divider, Row, Col, QRCode, Space } from "antd";
+import {
+  Avatar,
+  Card,
+  Flex,
+  Divider,
+  Row,
+  Col,
+  QRCode,
+  Space,
+  Button,
+} from "antd";
 
 const { Meta } = Card;
 const GUTTER = 16;
@@ -78,9 +88,23 @@ function List({ title, render }) {
           {title}&nbsp; {arrow}
         </h2>
       </Divider>
-      <Row gutter={[GUTTER, GUTTER]} wrap>
-        {isOpen && render}
-      </Row>
+      {isOpen && (
+        <>
+          <Row gutter={[GUTTER, GUTTER]} wrap>
+            {render}
+          </Row>
+          <Flex justify="center">
+            <Button
+              onClick={() => setIsOpen(!isOpen)}
+              type="primary"
+              shape="round"
+              className="btn-action"
+            >
+              Show Less
+            </Button>
+          </Flex>
+        </>
+      )}
     </Col>
   );
 }

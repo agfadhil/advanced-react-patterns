@@ -30,6 +30,11 @@ h2 {
   opacity: 0.8;
 }
 
+.ant-btn.btn-action {
+  margin: 1rem 0;
+  min-width: 8rem;
+}
+
 .ant-divider.main-title {
   margin: 0;
 }
