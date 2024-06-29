@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #F5F5F5FF;
 }
 
 code {
@@ -13,7 +14,12 @@ code {
 }
 
 div#root {
-  padding: 0 2rem 2rem 2rem;
+  padding: 0 2rem;
+}
+
+
+h2 {
+  color: rgba(0, 0, 0, 0.88);
 }
 
 .ant-btn {
@@ -22,4 +28,32 @@ div#root {
 
 .ant-btn:hover {
   opacity: 0.8;
+}
+
+.ant-divider.main-title {
+  margin: 0;
+}
+
+.ant-divider h2 {
+  cursor: pointer;
+}
+
+.col-center {
+  display: flex;
+  justify-content: center;
+}
+
+.card-center {
+  align-items: center;
+  display: flex;
+  text-align: center;
+}
+
+.img-bg {
+  height: 7rem;
+  object-fit: cover;
+}
+
+.main-content {
+  margin-bottom: 2rem;
 }
