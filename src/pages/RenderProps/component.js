@@ -5,6 +5,7 @@ import {
   EditOutlined,
   EllipsisOutlined,
   SettingOutlined,
+  PoweroffOutlined,
 } from "@ant-design/icons";
 import {
   Avatar,
@@ -95,10 +96,11 @@ function List({ title, render }) {
           </Row>
           <Flex justify="center">
             <Button
-              onClick={() => setIsOpen(!isOpen)}
-              type="primary"
-              shape="round"
               className="btn-action"
+              icon={<PoweroffOutlined />}
+              onClick={() => setIsOpen(!isOpen)}
+              shape="round"
+              type="primary"
             >
               Show Less
             </Button>
