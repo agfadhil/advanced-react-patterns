@@ -5,7 +5,8 @@ import {
   EditOutlined,
   EllipsisOutlined,
   SettingOutlined,
-  PoweroffOutlined,
+  DownCircleOutlined,
+  UpCircleOutlined,
 } from "@ant-design/icons";
 import {
   Avatar,
@@ -79,9 +80,12 @@ function ProfileQRCodeItem({ item }) {
   );
 }
 
-function List({ title, render }) {
+function List({ items, render, title }) {
   const [isOpen, setIsOpen] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(true);
+  const displayItems = isCollapsed ? items.slice(0, 3) : items;
   const arrow = isOpen ? "⤵" : "⤴";
+
   return (
     <Col className="gutter-row" span={12}>
       <Divider>
@@ -92,17 +96,17 @@ function List({ title, render }) {
       {isOpen && (
         <>
           <Row gutter={[GUTTER, GUTTER]} wrap>
-            {render}
+            {displayItems.map(render)}
           </Row>
           <Flex justify="center">
             <Button
               className="btn-action"
-              icon={<PoweroffOutlined />}
-              onClick={() => setIsOpen(!isOpen)}
+              icon={isCollapsed ? <DownCircleOutlined /> : <UpCircleOutlined />}
+              onClick={() => setIsCollapsed(!isCollapsed)}
               shape="round"
               type="primary"
             >
-              Show Less
+              {`Show ${isCollapsed ? "All" : "Less"}`}
             </Button>
           </Flex>
         </>
@@ -121,22 +125,14 @@ export default function RenderProps() {
       </Divider>
       <Row gutter={GUTTER} className="main-content">
         <List
+          items={dataRandomProfiles}
+          render={(i, idx) => <ProfileCardItem key={idx} item={i} />}
           title="Profile Card"
-          render={
-            dataRandomProfiles &&
-            dataRandomProfiles.map((i, idx) => (
-              <ProfileCardItem key={idx} item={i} />
-            ))
-          }
         />
         <List
+          items={dataRandomProfiles}
+          render={(i, idx) => <ProfileQRCodeItem key={idx} item={i} />}
           title="Profile QRCode"
-          render={
-            dataRandomProfiles &&
-            dataRandomProfiles.map((i, idx) => (
-              <ProfileQRCodeItem key={idx} item={i} />
-            ))
-          }
         />
       </Row>
     </>
