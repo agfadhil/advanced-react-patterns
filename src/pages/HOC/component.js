@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
 import { faker } from "@faker-js/faker";
-import { Avatar, Card, Flex, Divider, Row, Col } from "antd";
+import { Divider, Row, Col } from "antd";
+import { ProfileCardList } from "./lib-component";
 import { withToggles } from "./utils";
 
-const { Meta } = Card;
 const GUTTER = 16;
-const SPAN_ITEM = 8;
 
 const dataRandomProfiles = Array.from({ length: 10 }, (_, i) => {
   const avatar = faker.image.avatarLegacy();
@@ -16,44 +15,6 @@ const dataRandomProfiles = Array.from({ length: 10 }, (_, i) => {
 
   return { avatar, bgUrl, desc, emoji, name };
 });
-
-const description = (desc) => (
-  <Flex align="center">
-    <img
-      src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg"
-      style={{ width: 18, height: 18, marginRight: "5px" }}
-      alt="background card"
-    />
-    {desc}
-  </Flex>
-);
-
-function ProfileCardItem({ item }) {
-  return (
-    <Col className="gutter-row" span={SPAN_ITEM}>
-      <Card
-        hoverable
-        cover={<img className="img-bg" alt="background" src={item.bgUrl} />}
-      >
-        <Meta
-          avatar={<Avatar src={item.avatar} />}
-          title={item.name}
-          description={description(item.desc)}
-        />
-      </Card>
-    </Col>
-  );
-}
-
-function ProfileCardList({ items }) {
-  return (
-    <Row gutter={[GUTTER, GUTTER]} wrap>
-      {items.map((i, idx) => (
-        <ProfileCardItem key={idx} item={i} />
-      ))}
-    </Row>
-  );
-}
 
 const ProfileCardWithToggles = withToggles(ProfileCardList);
 
