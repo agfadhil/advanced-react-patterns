@@ -58,7 +58,7 @@ function ProfileGenerator({ children }) {
     if (profiles.length) {
       const updatedProfile = profiles.slice(1);
       setProfiles(updatedProfile);
-      setActiveKey(updatedProfile[0]["key"]);
+      setActiveKey(updatedProfile.length ? updatedProfile[0]["key"] : "");
     }
   };
 
