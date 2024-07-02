@@ -87,7 +87,7 @@ function List({ items, render, title }) {
   const arrow = isOpen ? "⤵" : "⤴";
 
   return (
-    <Col className="gutter-row" span={12}>
+    <Col flex="1">
       <Divider>
         <h2 onClick={() => setIsOpen(!isOpen)}>
           {title}&nbsp; {arrow}
