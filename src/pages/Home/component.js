@@ -87,7 +87,7 @@ function ButtonsAntdConfigured() {
 
 export default function Home() {
   return (
-    <Flex align="center" justify="center" style={{ height: "100vh" }} vertical>
+    <Flex align="center" justify="center" vertical className="main-full">
       <Divider>
         <h2>HOME</h2>
       </Divider>

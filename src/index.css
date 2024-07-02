@@ -35,6 +35,10 @@ h2 {
   min-width: 8rem;
 }
 
+.ant-collapse {
+  width: 65%;
+}
+
 .ant-divider.main-title {
   margin: 0;
 }
@@ -43,9 +47,17 @@ h2 {
   cursor: pointer;
 }
 
+.ant-typography.main-title {
+  margin: 0;
+}
+
 .col-center {
   display: flex;
   justify-content: center;
+}
+
+.btn-action {
+  min-width: 9rem;
 }
 
 .card-center {
@@ -59,6 +71,15 @@ h2 {
   object-fit: cover;
 }
 
+.main-card {
+  margin: 4rem 1rem 2rem 1rem;
+  width: 55rem;
+}
+
 .main-content {
   margin-bottom: 2rem;
+}
+
+.main-full {
+  height: 100vh;
 }

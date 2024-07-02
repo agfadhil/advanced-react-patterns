@@ -29,7 +29,7 @@ const dataRandomProfiles = Array.from({ length: 10 }, (_, i) => {
   const bgUrl = faker.image.urlPicsumPhotos();
   const desc = `${faker.finance.amount({ min: 80 })}`;
   const emoji = faker.internet.emoji({ types: ["flag"] });
-  const name = `${faker.person.firstName()} ${faker.person.lastName()}, ${emoji}`;
+  const name = `${faker.person.fullName()}, ${emoji}`;
 
   return { avatar, bgUrl, desc, emoji, name };
 });
