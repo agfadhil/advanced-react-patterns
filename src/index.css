@@ -72,7 +72,7 @@ h2 {
 }
 
 .main-card {
-  margin: 4rem 1rem 2rem 1rem;
+  margin: 2rem 1rem;
   width: 55rem;
 }
 
@@ -81,5 +81,9 @@ h2 {
 }
 
 .main-full {
+  height: 100%;
+}
+
+.main-home {
   height: 100vh;
 }

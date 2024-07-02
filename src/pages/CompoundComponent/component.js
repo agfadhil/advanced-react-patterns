@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import ProfileGenerator from "./ProfileGenerator";
 import { Flex, Card, Typography, Divider } from "antd";
+import { MinusCircleOutlined, PlusCircleOutlined } from "@ant-design/icons";
 import whiteWolf from "../../white-wolf.svg";
 
 function CompoundComponent() {
@@ -14,12 +15,18 @@ function CompoundComponent() {
             </Typography.Title>
           </Link>
         </Divider>
-        <Flex align="center" vertical>
+        <Flex align="center" className="main-content" vertical>
           <ProfileGenerator>
             <ProfileGenerator.Logo image={whiteWolf} width={300} />
             <Flex gap="middle">
-              <ProfileGenerator.BtnRemove icon="⦿" text="remove" />
-              <ProfileGenerator.BtnGenerate icon="⦿" text="generate" />
+              <ProfileGenerator.BtnRemove
+                icon={<MinusCircleOutlined />}
+                text="Remove"
+              />
+              <ProfileGenerator.BtnGenerate
+                icon={<PlusCircleOutlined />}
+                text="Generate"
+              />
             </Flex>
             <ProfileGenerator.Display />
           </ProfileGenerator>

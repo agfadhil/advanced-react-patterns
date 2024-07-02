@@ -1,39 +1,76 @@
 import { createContext, useContext, useState } from "react";
 import { faker } from "@faker-js/faker";
-import { Button, Col, Image, Collapse } from "antd";
+import { Button, Col, Image, Collapse, QRCode, Space, Typography } from "antd";
 
 const ProfileContext = createContext();
 
+function ProfileLabel({ item }) {
+  return (
+    <span>
+      <strong>{item.name}</strong>, {item.job}
+    </span>
+  );
+}
+
+function ProfileQRCode({ item }) {
+  const { Text } = Typography;
+  return (
+    <Col className="gutter-row col-center" flex="auto">
+      <Space align="center">
+        <QRCode value={item.imageUrl} icon={item.avatar} />
+        <Text keyboard>"{item.phrase}"</Text>
+      </Space>
+    </Col>
+  );
+}
+
 function ProfileGenerator({ children }) {
   const [profiles, setProfiles] = useState([]);
+  const [activeKey, setActiveKey] = useState("");
   const generateProfile = () => {
     const data = {
       key: faker.string.nanoid(8),
       avatar: faker.image.avatarLegacy(),
-      bgurl: faker.image.urlPicsumPhotos(),
+      imageUrl: faker.image.urlPicsumPhotos(),
       emoji: faker.internet.emoji({ types: ["flag"] }),
       job: faker.person.jobTitle(),
       name: faker.person.fullName(),
       phrase: faker.hacker.phrase(),
     };
+    const defaultKey = profiles.length ? profiles[0]["key"] : data.key;
+
+    const label = <ProfileLabel item={data} />;
+    const children = <ProfileQRCode item={data} />;
+
     setProfiles([
       ...profiles,
       {
         key: data.key,
-        label: data.name,
-        children: <p>{data.phrase}</p>,
+        label,
+        children,
+        extra: data.emoji,
       },
     ]);
+    setActiveKey(defaultKey);
   };
+
   const removeProfile = () => {
     if (profiles.length) {
-      setProfiles(profiles.slice(1));
+      const updatedProfile = profiles.slice(1);
+      setProfiles(updatedProfile);
+      setActiveKey(updatedProfile[0]["key"]);
     }
   };
 
   return (
     <ProfileContext.Provider
-      value={{ profiles, generateProfile, removeProfile }}
+      value={{
+        activeKey,
+        setActiveKey,
+        profiles,
+        generateProfile,
+        removeProfile,
+      }}
     >
       {children}
     </ProfileContext.Provider>
@@ -44,7 +81,7 @@ function Logo({ image, width }) {
   return <Image width={width} src={image} />;
 }
 
-function BtnGenerate({ icon, text }) {
+function BtnGenerate({ children, icon, text }) {
   const { generateProfile } = useContext(ProfileContext);
   return (
     <Col flex={1}>
@@ -55,38 +92,32 @@ function BtnGenerate({ icon, text }) {
         onClick={generateProfile}
         type="primary"
       >
-        {text}
+        {text} {children}
       </Button>
     </Col>
   );
 }
 
-function BtnRemove({ icon, text }) {
+function BtnRemove({ children, icon, text }) {
   const { removeProfile } = useContext(ProfileContext);
   return (
-    // <Col span={12}>
-    //   <Button icon={icon} block onClick={removeProfile}>
-    //     {text}
-    //   </Button>
-    // </Col>
     <Button block className="btn-action" icon={icon} onClick={removeProfile}>
-      {text}
+      {text} {children}
     </Button>
   );
 }
 
 function Display() {
-  const { profiles } = useContext(ProfileContext);
-  const defaultActiveKey = profiles.length ? profiles[0]["key"] : [];
+  const { activeKey, setActiveKey, profiles } = useContext(ProfileContext);
 
-  console.log("profiles display", profiles);
-  console.log("defaultActiveKey display", defaultActiveKey);
+  const onChange = (key) => setActiveKey(key);
 
   return (
     <Collapse
       bordered={profiles.length}
-      defaultActiveKey={defaultActiveKey}
+      activeKey={activeKey}
       items={profiles}
+      onChange={onChange}
     />
   );
 }
