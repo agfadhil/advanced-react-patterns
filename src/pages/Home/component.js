@@ -89,7 +89,7 @@ export default function Home() {
   return (
     <Flex align="center" justify="center" vertical className="main-home">
       <Divider style={{ marginTop: 0 }}>
-        <h2>HOME</h2>
+        <h2>Advanced React Patterns</h2>
       </Divider>
       <Row>
         <ButtonsAntdConfigured />
